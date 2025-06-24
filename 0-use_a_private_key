@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+SERVER="your.server.ip.or.hostname"
+# Replace with your actual server IP or domain
+
+ssh -i ~/.ssh/school ubuntu@"$SERVER"
+# -i specifies the private key file; ubuntu@SERVER avoids the use of the -l flag
+
