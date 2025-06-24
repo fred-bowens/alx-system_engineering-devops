@@ -1,13 +1,27 @@
+#!/usr/bin/env bash
 Host myserver
-  HostName my.server.ip.or.hostname
+  # Alias for the server so you can run `ssh myserver`
+
+  HostName your.server.ip.or.hostname
+  # The actual IP address or domain of your server
+
   User ubuntu
+  # The username to log in as (in this case, 'ubuntu')
+
   IdentityFile ~/.ssh/school
+  # Path to the private SSH key used for authentication
+
   PasswordAuthentication no
+  # Disable password authentication — only key-based login is allowed
 
+mkdir -p ~/.ssh
+# Ensures the .ssh directory exists for the ubuntu user
 
-ssh -i ~/.ssh/school ubuntu@your.server.ip.or.hostname
-cd ~/.ssh
-nano authorized_keys
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCy
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC7fakeKeyExampleOnly== user@openai" >> ~/.ssh/authorized_keys
+# Adds the given public key to the authorized_keys file
+
 chmod 700 ~/.ssh
+# Sets secure permissions for the .ssh directory
+
 chmod 600 ~/.ssh/authorized_keys
+# Sets secure permissions for the authorized_keys file
