@@ -2,7 +2,7 @@
 mkdir -p ~/.ssh
 # Ensures the .ssh directory exists for the ubuntu user
 
-echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC7fakeKeyExampleOnly== user@openai" >> ~/.ssh/authorized_keys
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC7fakeKeyExampleOnly== userisaac" >> ~/.ssh/authorized_keys
 # Adds the given public key to the authorized_keys file
 
 chmod 700 ~/.ssh
