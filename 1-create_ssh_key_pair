@@ -1,0 +1,4 @@
+/bin/bash
+isaac@ubuntu$ ls
+
+ssh-keygen -t rsa -b 4096 -f school -N "betty"
