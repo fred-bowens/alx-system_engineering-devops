@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
+# Update package list to ensure apt-get installs the latest version of packages
 apt-get update -y
-)
+
+# Install nginx package non-interactively (-y skips prompts)
 apt-get install nginx -y
 
+# Create or overwrite the default HTML file to contain "Hello World!"
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
 
+# Start nginx without using systemctl (as per the restriction)
 service nginx start
