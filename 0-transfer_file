@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
+# Check for exactly 4 arguments
 if [ "$#" -ne 4 ]; then
     echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
     exit 1
 fi
+
+# Assign arguments to variables for readability
 FILE_PATH="$1"
 SERVER_IP="$2"
 USERNAME="$3"
 SSH_KEY="$4"
 
+# Transfer the file to the user's home directory using scp
 scp -i "$SSH_KEY" -o StrictHostKeyChecking=no "$FILE_PATH" "$USERNAME@$SERVER_IP:~/"
