@@ -1,0 +1,18 @@
+# Edit the before.rules file
+sudo nano /etc/ufw/before.rules
+# (Add the *nat section as shown above)
+
+# Allow both ports (optional but helps test)
+sudo ufw allow 80/tcp
+sudo ufw allow 8080/tcp
+
+# Reload UFW to apply rules
+sudo ufw reload
+
+#nat
+:PREROUTING ACCEPT [0:0]
+
+# Redirect port 8080 to port 80
+-A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
+
+COMMIT
