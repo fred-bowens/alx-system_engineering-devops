@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Ignore ShellCheck SC2154 as requested
+
+# Update the package list
+apt-get update -y
+
+# Install nginx
+apt-get install nginx -y
+
+# Set the custom header in Nginx config using my server's hostname
+# It goes inside the http block of nginx.conf
+
+hostname=$(myhostname)
+
+# Use sed to insert the header if not already there
+if ! grep -q "add_header X-Served-By" /etc/nginx/nginx.conf; then
+  sed -i "/http {/a \    add_header X-Served-By $myhostname;" /etc/nginx/nginx.conf
+fi
+
+# Reload nginx using service (not systemctl)
+service nginx reload
