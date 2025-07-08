@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC2086
+
+# Function to fetch and print subdomain info
+get_subdomain_info() {
+    local domain=$1
+    local subdomain=$2
+    result=$(dig ${subdomain}.${domain} | grep -A1 'ANSWER SECTION:' | tail -n1)
+    record_type=$(echo $result | awk '{print $4}')
+    destination=$(echo $result | awk '{print $5}')
+    echo "The subdomain ${subdomain} is a ${record_type} record and points to ${destination}"
+}
+
+# Check number of arguments
+if [ $# -eq 1 ]; then
+    domain=$1
+    for sub in www lb-01 web-01 web-02; do
+        get_subdomain_info $domain $sub
+    done
+elif [ $# -eq 2 ]; then
+    domain=$1
+    subdomain=$2
+    get_subdomain_info $domain $subdomain
+else
+    echo "Usage: $0 <domain> [subdomain]"
+    exit 1
+fi
