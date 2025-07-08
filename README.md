@@ -9,3 +9,27 @@ A -	Maps domain to IP (IPv4)	example.com → 192.0.2.1
 CNAME -	Points domain to another name	www → example.com
 TXT -	Holds text (for verification, email security)	SPF, DKIM, etc.
 MX -	Routes email to mail servers	example.com → mail server
+
+# 0-world_wide_web
+
+## Description
+
+This project configures DNS subdomains and includes a script to audit DNS records of a domain and its subdomains.
+
+## DNS Configuration
+
+I configure my domain zone to include the following subdomains:
+
+| Subdomain | Record Type | Points to          |
+|-----------|-------------|--------------------|
+| www       | A           | lb-01 IP address   |
+| lb-01     | A           | lb-01 IP address   |
+| web-01    | A           | web-01 IP address  |
+| web-02    | A           | web-02 IP address  |
+
+## Script: `0-world_wide_web`
+
+### Usage
+
+```bash
+./0-world_wide_web <domain> [subdomain]
